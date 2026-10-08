@@ -7,44 +7,85 @@ const botonBuscar = formulario.querySelector("button");
 
 
 const obtenerPokemon = async (busqueda) => {
-    const url = `https://pokeapi.co/api/v2/pokemon/${busqueda}`;
-    const respuesta = await fetch(url);
+  const url = `https://pokeapi.co/api/v2/pokemon/${busqueda}`;
+  const respuesta = await fetch(url);
 
-    if (!respuesta.ok) {
-        throw new Error("Pokémon no encontrado.");
+  if (!respuesta.ok) {
+    throw new Error("Pokémon no encontrado.");
+  }
+
+  const datos = await respuesta.json();
+
+  return {
+    id: datos.id,
+    nombre: datos.name,
+    imagenFrente: datos.sprites.front_default,
+    imagenEspalda: datos.sprites.back_default,
+    imagenShiny: datos.sprites.shiny,
+    altura: datos.height,
+    peso: datos.weight,
+    tipos: datos.types.map(({ type }) => type.name),
+  };
+
+};
+
+const cargarPrimeraGeneracion = async () => {
+  mensaje.textContent = "Cargando primera generación...";
+  resultado.innerHTML = ""; // Limpiamos la pantalla antes de empezar
+
+  try {
+    // Creamos un array de promesas desde el ID 1 hasta el 151
+    const promesas = [];
+    for (let i = 1; i <= 151; i++) {
+      promesas.push(obtenerPokemon(i));
     }
 
-    const datos = await respuesta.json();
+    // Esperamos a que se resuelvan todas las peticiones a la vez
+    const listaPokemon = await Promise.all(promesas);
 
-    return {
-        id: datos.id,
-        nombre: datos.name,
-        imagen: datos.sprites.back_default,
-        altura: datos.height,
-        peso: datos.weight,
-        tipos: datos.types.map(({ type }) => type.name),
-    };
-    
+    // Limpiamos el mensaje de carga
+    mensaje.textContent = "";
+
+    // Los dibujamos todos en orden en el HTML
+    listaPokemon.forEach((pokemon) => {
+      mostrarPokemon(pokemon);
+    });
+
+  } catch (error) {
+    mensaje.textContent = "Error al cargar la primera generación.";
+    console.error(error);
+  }
 };
+
+// Llamamos a la función automáticamente al cargar la página
+cargarPrimeraGeneracion();
+
 
 const formatearId = (id) => {
   return String(id).padStart(3, "0");
 };
 
 const mostrarPokemon = (pokemon) => {
-    const tiposHTML = pokemon.tipos
-        .map((tipo) => `<span class="tipo">${tipo}</span>`)
-        .join("");
+  const tiposHTML = pokemon.tipos
+    .map((tipo) => `<span class="tipo">${tipo}</span>`)
+    .join("");
 
-    resultado.innerHTML = `
+  resultado.innerHTML += `
     <article class="pokemon">
       <p class="pokemon__numero">N.º ${formatearId(pokemon.id)}</p>
 
-      <img
-        class="pokemon__imagen"
-        src="${pokemon.imagen}"
-        alt="Imagen de ${pokemon.nombre}"
-      >
+<div class="pokemon__galeria">
+        <img
+          class="pokemon__imagen pokemon__imagen--espalda"
+          src="${pokemon.imagenEspalda}"
+          alt="Imagen de espalda de ${pokemon.nombre}"
+        >
+        <img
+          class="pokemon__imagen pokemon__imagen--frente"
+          src="${pokemon.imagenFrente}"
+          alt="Imagen de frente de ${pokemon.nombre}"
+        >
+      </div>
 
       <h2 class="pokemon__nombre">${pokemon.nombre}</h2>
 
@@ -62,36 +103,36 @@ const mostrarPokemon = (pokemon) => {
 
 
 formulario.addEventListener("submit", async (evento) => {
-    evento.preventDefault();
+  evento.preventDefault();
 
-    console.log(inputBusqueda)
-    const busqueda = inputBusqueda.value.trim().toLowerCase();
+  console.log(inputBusqueda)
+  const busqueda = inputBusqueda.value.trim().toLowerCase();
 
-    if (!busqueda) {
-        mensaje.textContent = "Introduce un nombre o número.";
-        resultado.innerHTML = "";
-        return;
-    }
-
-    mensaje.textContent = "Cargando...";
+  if (!busqueda) {
+    mensaje.textContent = "Introduce un nombre o número.";
     resultado.innerHTML = "";
+    return;
+  }
 
-    try {
-        botonBuscar.disabled = true;
-        const pokemon = await obtenerPokemon(busqueda);
+  mensaje.textContent = "Cargando...";
+  resultado.innerHTML = "";
 
-        mostrarPokemon(pokemon);
-        
-        mensaje.textContent = "";
-        inputBusqueda.focus();
-        
-        
-    } catch (error) {
-        mensaje.textContent = error.message;
-    }
-      finally {
-        botonBuscar.disabled = false;
-    }
-    
+  try {
+    botonBuscar.disabled = true;
+    const pokemon = await obtenerPokemon(busqueda);
+
+    mostrarPokemon(pokemon);
+
+    mensaje.textContent = "";
+    inputBusqueda.focus();
+
+
+  } catch (error) {
+    mensaje.textContent = error.message;
+  }
+  finally {
+    botonBuscar.disabled = false;
+  }
+
 });
 

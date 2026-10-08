@@ -65,3 +65,10 @@ La de añadir el número de ceros necesarios hasta llegar a las 3 cifras en caso
 
 ###    ¿Qué habría que modificar para mostrar varios Pokémon simultáneamente?
 
+Apartados a cumplir
+
+## 3. Resultado esperado
+
+En primer lugar he creado una función para cargar las tarjetas de los 151 primeros pokemon y la he llamado al principio del archivo javascript para que aparezca en pantalla al renderizar la web.
+En segundo lugar he añadido un + antes del igual del resultado.innerHtml de la función mostrarPokemon para acumular las tarjetas de los pokémon y que no sustituya una por la que había previamente
+Por último para lograr que aparezca el pokemon de espaldas inicialmente y que al hacer hover se gire he añadido dos variables en la funcion obtenerPokemon, una para la foto frontal y otra para la de espaldas y luego en la función mostrarPokemon he añadido las dos imágenes al mismo contenedor para después jugar con su visualización mediante la opacidad desde el CSS
