@@ -19,7 +19,7 @@ const obtenerPokemon = async (busqueda) => {
     return {
         id: datos.id,
         nombre: datos.name,
-        imagen: datos.sprites.back_default,
+        imagen: datos.sprites.front_default,
         altura: datos.height,
         peso: datos.weight,
         tipos: datos.types.map(({ type }) => type.name),
