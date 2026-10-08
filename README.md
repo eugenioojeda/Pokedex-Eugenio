@@ -49,7 +49,7 @@ Consigue recorrer el array de los tipos de los pokémon y los coloca en un array
 
 ###    ¿Por qué utilizamos join("") después de map()?
 
-
+Para que los tipos del pokémon no aparezcan separados por comas
 
 ###    ¿Qué diferencia existe entre try y catch?
 
@@ -60,4 +60,7 @@ Consigue recorrer el array de los tipos de los pokémon y los coloca en un array
 Para separar responsabilidades del código haciendo más sencilla su comprensión
 
 ###    ¿Qué función cumple formatearId()?
+
+La de
+
 ###    ¿Qué habría que modificar para mostrar varios Pokémon simultáneamente?

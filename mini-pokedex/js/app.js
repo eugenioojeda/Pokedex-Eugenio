@@ -2,14 +2,13 @@ const formulario = document.querySelector("#formulario-busqueda");
 const inputBusqueda = document.querySelector("#busqueda");
 const mensaje = document.querySelector("#mensaje");
 const resultado = document.querySelector("#resultado");
+const botonBuscar = formulario.querySelector("button");
 
-console.log(formulario);
-console.log(inputBusqueda);
-console.log(mensaje);
-console.log(resultado);
+
 
 const obtenerPokemon = async (busqueda) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${busqueda}`;
+    botonBuscar.disabled = true;
     const respuesta = await fetch(url);
 
     if (!respuesta.ok) {
@@ -21,11 +20,12 @@ const obtenerPokemon = async (busqueda) => {
     return {
         id: datos.id,
         nombre: datos.name,
-        imagen: datos.sprites.front_default,
+        imagen: datos.sprites.back_default,
         altura: datos.height,
         peso: datos.weight,
         tipos: datos.types.map(({ type }) => type.name),
     };
+    
 };
 
 const formatearId = (id) => {
@@ -65,6 +65,7 @@ const mostrarPokemon = (pokemon) => {
 formulario.addEventListener("submit", async (evento) => {
     evento.preventDefault();
 
+    console.log(inputBusqueda)
     const busqueda = inputBusqueda.value.trim().toLowerCase();
 
     if (!busqueda) {
@@ -77,12 +78,21 @@ formulario.addEventListener("submit", async (evento) => {
     resultado.innerHTML = "";
 
     try {
+        botonBuscar.disabled = true;
         const pokemon = await obtenerPokemon(busqueda);
 
         mostrarPokemon(pokemon);
+        
         mensaje.textContent = "";
+        inputBusqueda.focus();
+        
+        
     } catch (error) {
         mensaje.textContent = error.message;
     }
+      finally {
+        botonBuscar.disabled = false;
+    }
+    
 });
 
