@@ -8,7 +8,6 @@ const botonBuscar = formulario.querySelector("button");
 
 const obtenerPokemon = async (busqueda) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${busqueda}`;
-    botonBuscar.disabled = true;
     const respuesta = await fetch(url);
 
     if (!respuesta.ok) {

@@ -53,7 +53,7 @@ Para que los tipos del pokémon no aparezcan separados por comas
 
 ###    ¿Qué diferencia existe entre try y catch?
 
-
+Que el try intenta ejecutar su contenido y en caso de que haya algún error salte al catch directamente
 
 ###    ¿Por qué hemos separado obtenerPokemon() y mostrarPokemon()?
 
@@ -61,6 +61,7 @@ Para separar responsabilidades del código haciendo más sencilla su comprensió
 
 ###    ¿Qué función cumple formatearId()?
 
-La de
+La de añadir el número de ceros necesarios hasta llegar a las 3 cifras en caso de que el número sea de una o dos cifras
 
 ###    ¿Qué habría que modificar para mostrar varios Pokémon simultáneamente?
+
