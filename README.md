@@ -1,15 +1,25 @@
 # Pokedex-Eugenio
 
 ## 1. Punto de partida
-Un repositorio destinado al cumplimiento de la actividad de crear una pokédex con HTML, CSS y JavaScript que sea capaz de comunicarse con una API externa para mostrar los datos de los pokémon solicitados.
+Hasta ahora he desarrollado una aplicación sencilla que consiste en un buscador de Pokémon conectado a la API oficial de Pokémon capaz de buscar entre 1351 pokémons por su nombre o identificador
 
+Imagen del árbol de carpetas:
 
-# 19. Preguntas de comprobación
+![Arbol de carpetas](mini-pokedex/img/arbol.png)
+
+Imagen de la aplicación funcionando:
+
+![Aplicacion funcionando](mini-pokedex/img/prueba1.png)
+
+Imagen de una búsqueda incorrecta:
+![Error manejado](mini-pokedex/img/error1.png)
+
+# 19. Preguntas de comprobación PrePokedex
 
 ## Responde en tu cuaderno o en un archivo Markdown:
 
 ###    ¿Por qué escuchamos el evento submit del formulario?
-Para poder
+Para poder ejecutar la búsqueda cuando se confirme el formulario
 
 ###    ¿Qué ocurriría si eliminamos evento.preventDefault()?
 
