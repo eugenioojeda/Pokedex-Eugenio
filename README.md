@@ -75,3 +75,106 @@ La de añadir el número de ceros necesarios hasta llegar a las 3 cifras en caso
 
 ###    ¿Qué habría que modificar para mostrar varios Pokémon simultáneamente?
 
+En mi caso he creado una función que los carga todos en una variable y otra función para mostrarla en un grid.
+
+## 3. Resultado esperado
+
+En primer lugar he creado una función para cargar las tarjetas de los 151 primeros pokemon y la he llamado al principio del archivo javascript para que aparezca en pantalla al renderizar la web.
+En segundo lugar he añadido un + antes del igual del resultado.innerHtml de la función mostrarPokemon para acumular las tarjetas de los pokémon y que no sustituya una por la que había previamente
+Por último para lograr que aparezca el pokemon de espaldas inicialmente y que al hacer hover se gire he añadido dos variables en la funcion obtenerPokemon, una para la foto frontal y otra para la de espaldas y luego en la función mostrarPokemon he añadido las dos imágenes al mismo contenedor para después jugar con su visualización mediante la opacidad desde el CSS
+
+
+1. Punto de partida
+
+    Descripción de la mini-Pokédex obtenida en la práctica guiada.
+    Estructura inicial del proyecto.
+    Funcionalidades que ya estaban disponibles.
+    Pruebas realizadas antes de comenzar las ampliaciones.
+    Capturas que demuestren que el proyecto inicial funciona.
+    Enlace o identificador del commit inicial.
+
+
+2. Carga de los 151 Pokémon
+
+    Cambios realizados respecto al código inicial.
+    Explicación de la consulta y transformación de los datos.
+    Problemas encontrados y soluciones aplicadas.
+    Capturas de la colección cargada.
+
+    He creado una función llamada cargarPrimeraGeneracion() destinada a cargar la primera generación que recorre con un bucle los primeros 151 pokémons de la API y los muestra mediante otra función llamada mostrarPokemon()
+
+3. Construcción de las tarjetas
+
+    Datos seleccionados de PokéAPI.
+    Explicación de la generación dinámica de las tarjetas.
+    Implementación del cambio entre el sprite trasero y el frontal.
+    Capturas del resultado normal y del estado al pasar el cursor.
+
+
+
+4. Barra de búsqueda y filtros
+
+    Explicación del funcionamiento de la búsqueda.
+    Explicación del filtro por tipo.
+    Forma de combinar ambos filtros.
+    Capturas de varios casos de prueba.
+
+5. Información ampliada
+
+    Explicación del panel de detalles.
+    Datos adicionales mostrados.
+    Capturas del panel abierto y cerrado.
+
+6. Gestión de estados y errores
+
+    Estado de carga.
+    Búsquedas sin resultados.
+    Errores de comunicación con PokéAPI.
+    Capturas o evidencias de las pruebas realizadas.
+
+7. Pruebas finales
+
+    Tabla completa de pruebas.
+    Resultado obtenido en cada caso.
+    Correcciones realizadas después de las pruebas.
+
+8. Conclusiones
+
+    Dificultades encontradas.
+    Conocimientos adquiridos.
+    Posibles mejoras futuras.
+
+    Las dificultades encontradas han sido acostumbrarme a trabajar con funciones flecha y aprender cómo funcionan las promesas
+
+    He adquirido el conocimiento de aprender a estructurar las funciones en mi archivo javaScript para organizarme mejor con el código y 
+
+Además, el archivo deberá incluir:
+
+    Nombre del proyecto.
+    Nombre del autor o autora.
+    Descripción de la aplicación.
+    Tecnologías utilizadas.
+    Instrucciones para ejecutarla.
+    Estructura del proyecto.
+    Funcionalidades implementadas.
+    Enlaces a commits relevantes cuando se termine cada fase.
+
+
+| Prueba | Resultado esperado | Evidencia (Imagen) |
+| :--- | :--- | :--- |
+| Abrir la aplicación | Se muestra la interfaz inicial sin errores | ![Interfaz](mini-pokedex/img/interfaz.png)|
+| Iniciar la carga | Aparece un mensaje de carga |![](mini-pokedex/img/carga.png) |
+| Finalizar la consulta | Se muestran 151 tarjetas |![](mini-pokedex/img/tarjetas.png) |
+| Buscar pikachu | Solo aparece Pikachu |![](mini-pokedex/img/pikachu.png) |
+| Buscar 25 | Solo aparece Pikachu |![](mini-pokedex/img/pikachu2.png) |
+| Buscar char | Aparecen los Pokémon cuyo nombre contiene ese fragmento |![](mini-pokedex/img/char.png) |
+| Buscar un nombre inexistente | Se muestra un mensaje sin errores técnicos |![](mini-pokedex/img/inexistente.png) |
+| Vaciar la búsqueda | Vuelven a mostrarse todos los Pokémon |![](ruta_de_la_imagen.png) |
+| Seleccionar el tipo fire | Solo aparecen Pokémon de tipo fuego |![](ruta_de_la_imagen.png) |
+| Combinar texto y tipo | Se cumplen simultáneamente ambos filtros |![](ruta_de_la_imagen.png) |
+| Colocar el cursor sobre una tarjeta | El sprite cambia de espalda a frente |![](ruta_de_la_imagen.png) |
+| Retirar el cursor | Vuelve a mostrarse el sprite trasero |![](ruta_de_la_imagen.png) |
+| Pulsar Ver detalles | Aparece toda la información ampliada solicitada |![](ruta_de_la_imagen.png) |
+| Cerrar los detalles | El panel desaparece sin recargar la página |![](ruta_de_la_imagen.png) |
+| Simular un fallo de conexión | Aparece un mensaje y se puede reintentar |![](ruta_de_la_imagen.png) |
+| Reducir el ancho de la ventana | Las tarjetas se adaptan sin desbordamientos |![](ruta_de_la_imagen.png) |
